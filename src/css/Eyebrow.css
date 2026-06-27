@@ -1,0 +1,31 @@
+/* ── Eyebrow label ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: var(--aln-wine);
+}
+
+.eyebrow__line {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 22px;
+  height: 1px;
+
+  background: var(--aln-wine);
+}
+
+/* ── Light modifier (for dark backgrounds) ── */
+.eyebrow--light {
+  color: var(--aln-wine-soft);
+}
+
+.eyebrow--light .eyebrow__line {
+  background: var(--aln-wine-soft);
+}
