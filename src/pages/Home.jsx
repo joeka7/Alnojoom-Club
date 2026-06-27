@@ -102,8 +102,8 @@ function Hero() {
           <p data-reveal data-delay="180" className="hero__desc">
             Al Nojoom Club is the destination for premium aesthetic treatments.
             One exclusive membership grants unlimited access to three
-            transformative beauty services - for a naturally youthful,
-            flawless look.
+            transformative beauty services - for a naturally youthful, flawless
+            look.
           </p>
 
           <div data-reveal data-delay="270" className="hero__actions">
@@ -143,7 +143,12 @@ function Hero() {
         </div>
 
         {/* Right: image */}
-        <div data-reveal data-anim="right" data-delay="220" className="hero__media">
+        <div
+          data-reveal
+          data-anim="right"
+          data-delay="220"
+          className="hero__media"
+        >
           <img
             src={heroImg}
             alt="Al Nojoom Club - timeless beauty"
@@ -451,9 +456,9 @@ function AboutSnapshot() {
           <p className="about-snapshot__desc">
             Everlast Wellness is an aesthetic wellness clinic specializing in
             dermatological and anti-aging treatments. Our mission is to serve
-            the community with the highest level of health and wellness -
-            body, mind, and spirit - supported by a team of medical experts
-            with over a decade of experience.
+            the community with the highest level of health and wellness - body,
+            mind, and spirit - supported by a team of medical experts with over
+            a decade of experience.
           </p>
           <div className="about-snapshot__stats">
             {ABOUT_STATS.map((s) => (
