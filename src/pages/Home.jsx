@@ -204,7 +204,7 @@ function Hero() {
 const WHY_CARDS = [
   {
     title: "Board-Certified Specialists",
-    desc: "Our doctors and aesthetic practitioners deliver safe, precise, and effective treatments.",
+    desc: "Our experienced doctors and aesthetic practitioners deliver safe, precise, and effective treatments.",
     icon: (
       <svg
         width={24}
@@ -242,7 +242,7 @@ const WHY_CARDS = [
   },
   {
     title: "State-of-the-Art Equipment",
-    desc: "Advanced technology for optimal results with minimal discomfort and downtime.",
+    desc: "Advanced technology providing optimal results with minimal discomfort and downtime.",
     icon: (
       <svg
         width={24}
@@ -261,7 +261,7 @@ const WHY_CARDS = [
   },
   {
     title: "Trusted by Thousands",
-    desc: "A reputation for excellence and client satisfaction across Abu Dhabi.",
+    desc: "Recognized for excellence, quality, and client satisfaction across Abu Dhabi.",
     icon: (
       <svg
         width={24}
@@ -374,9 +374,7 @@ function FeaturedServices() {
             <span className="beard-card__eyebrow">For men</span>
             <h3 className="beard-card__title">Beard Trimming</h3>
             <p className="beard-card__desc">
-              A precision laser treatment that shapes and defines the beard
-              line, reduces unwanted growth, and ends razor irritation - for a
-              consistently sharp, sculpted look.
+              A cutting-edge laser solution for long-term beard shaping. Precisely defines the neckline, shapes the cheeks, reduces patchy growth, and minimizes daily shaving — for a consistently sharp, sculpted look.
             </p>
             <span className="beard-card__cta">
               Discover the men's track <ArrowRight />
@@ -454,11 +452,11 @@ function AboutSnapshot() {
             .
           </h2>
           <p className="about-snapshot__desc">
-            Everlast Wellness is an aesthetic wellness clinic specializing in
-            dermatological and anti-aging treatments. Our mission is to serve
-            the community with the highest level of health and wellness - body,
-            mind, and spirit - supported by a team of medical experts with over
-            a decade of experience.
+            We provide premium aesthetic treatments for adults and students,
+            offering rejuvenating facial therapies that deeply cleanse, hydrate,
+            and revitalize the skin. Everlast Wellness has more than 10 years of
+            expertise delivering advanced aesthetic care with the highest
+            standards of safety and professionalism.
           </p>
           <div className="about-snapshot__stats">
             {ABOUT_STATS.map((s) => (
@@ -604,7 +602,7 @@ function MembershipTracks() {
       <div className="membership__inner">
         <div data-reveal className="membership__header">
           <span className="membership__eyebrow">
-            Membership Â· choose your path
+            Membership · choose your path
           </span>
           <h2 className="membership__title">
             Designed for <span className="membership__title-accent">her</span>.
@@ -697,19 +695,19 @@ const TESTIMONIALS = [
   {
     q: "A one-year membership with unlimited sessions on three services means I always look and feel my best. The results are amazing.",
     n: "Layla A.",
-    r: "Member Â· Abu Dhabi",
+    r: "Member · Abu Dhabi",
     initial: "L",
   },
   {
     q: "The team is professional and the center is immaculate. My skin has never looked better since joining the club.",
     n: "Sara M.",
-    r: "Member Â· Al Bateen",
+    r: "Member · Al Bateen",
     initial: "S",
   },
   {
     q: "As a busy professional, the unlimited sessions are convenient, luxurious, and completely worth it.",
     n: "Omar K.",
-    r: "Member Â· Abu Dhabi",
+    r: "Member · Abu Dhabi",
     initial: "O",
   },
 ];

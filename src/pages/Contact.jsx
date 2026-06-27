@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+﻿import { useRef, useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import Eyebrow from '../components/Eyebrow'
 import '../css/Contact.css'
@@ -21,8 +21,8 @@ function ArrowDiag({ size = 16 }) {
 const INFO_CARDS = [
   {
     label: 'Address',
-    value: 'Everlast Wellness Medical Center, Al Bateen, Abu Dhabi, UAE',
-    href: 'https://maps.google.com/?q=Al+Bateen+Abu+Dhabi',
+    value: '446 Al Khaleej Al Arabi St, Al Bateen, Abu Dhabi, UAE',
+    href: 'https://maps.app.goo.gl/WQSCYByNBC5QJRAH6',
     icon: <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx={12} cy={10} r={3}/></svg>,
   },
   {
@@ -33,8 +33,8 @@ const INFO_CARDS = [
   },
   {
     label: 'Email',
-    value: 'info@alnojoomclub.com',
-    href: 'mailto:info@alnojoomclub.com',
+    value: 'customer.service@everlastwellness.com',
+    href: 'mailto:customer.service@everlastwellness.com',
     icon: <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><rect width={20} height={16} x={2} y={4} rx={2}/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>,
   },
 ]
@@ -60,10 +60,10 @@ export default function Contact() {
             <StarIcon /> Get in touch
           </span>
           <h1 data-reveal data-delay="60" className="contact-hero__title">
-            We'd love to <span className="contact-hero__title-accent">hear</span> from you.
+            Get in touch <span className="contact-hero__title-accent">with</span> us.
           </h1>
           <p data-reveal data-delay="120" className="contact-hero__desc">
-            Reach out with questions about membership, services, or to book a consultation. Our team responds within one business day.
+            We'd love to hear from you. Reach out with questions about membership, services, or to book a consultation — our team responds within one business day.
           </p>
         </div>
       </section>
@@ -163,7 +163,7 @@ export default function Contact() {
 ───────────────────────────────────── */
 function ContactForm() {
   const [sent, setSent]           = useState(false)
-  const [form, setForm]           = useState({ name: '', phone: '', email: '', message: '' })
+  const [form, setForm]           = useState({ name: '', phone: '', email: '', subject: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
@@ -191,7 +191,7 @@ function ContactForm() {
         <button
           type="button"
           className="contact-form__success-reset"
-          onClick={() => { setSent(false); setForm({ name: '', phone: '', email: '', message: '' }) }}
+          onClick={() => { setSent(false); setForm({ name: '', phone: '', email: '', subject: '', message: '' }) }}
         >
           Send another message
         </button>
@@ -206,6 +206,7 @@ function ContactForm() {
         <FormField label="Phone number" name="phone" type="tel"  value={form.phone} onChange={handle} placeholder="+971 XX XXX XXXX" />
       </div>
       <FormField label="Email address" name="email" type="email" value={form.email} onChange={handle} placeholder="you@example.com" required />
+      <FormField label="Subject" name="subject" type="text" value={form.subject} onChange={handle} placeholder="How can we help?" required />
       <div className="contact-form__field">
         <label className="contact-form__label">Message</label>
         <textarea

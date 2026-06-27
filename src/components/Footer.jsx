@@ -59,7 +59,7 @@ export default function Footer() {
 
       <div className="footer__inner">
 
-        {/* â”€â”€ Newsletter â”€â”€ */}
+        {/* â"€â"€ Newsletter â"€â"€ */}
         <div className="footer__newsletter">
           <div className="footer__newsletter-copy">
             <span className="footer__newsletter-eyebrow">Members get more</span>
@@ -76,7 +76,7 @@ export default function Footer() {
               <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="#86e0aa" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 6 9 17l-5-5"/>
               </svg>
-              Subscribed â€” talk soon.
+              Subscribed - talk soon.
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="footer__form">
@@ -103,7 +103,7 @@ export default function Footer() {
           )}
         </div>
 
-        {/* â”€â”€ Footer grid â”€â”€ */}
+        {/* â"€â"€ Footer grid â"€â"€ */}
         <div className="footer__grid">
 
           {/* Brand */}
@@ -172,16 +172,16 @@ export default function Footer() {
                 <svg className="footer__contact-icon" width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="var(--aln-wine-soft)" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
                   <rect x={3} y={5} width={18} height={14} rx={2}/><path d="m3 7 9 6 9-6"/>
                 </svg>
-                <a href="mailto:info@alnojoomclub.com" className="footer__contact-link">info@alnojoomclub.com</a>
+                <a href="mailto:customer.service@everlastwellness.com" className="footer__contact-link">customer.service@everlastwellness.com</a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* â”€â”€ Bottom bar â”€â”€ */}
+        {/* â"€â"€ Bottom bar â"€â"€ */}
         <div className="footer__bottom">
-          <p className="footer__copyright">Â© 2026 Al Nojoom Club. Presented by Everlast Wellness Medical Center.</p>
-          <p className="footer__region">Abu Dhabi Â· UAE</p>
+          <p className="footer__copyright">© 2025 ALNOJOOM CLUB. All Rights Reserved.</p>
+          <p className="footer__region">Abu Dhabi · UAE</p>
         </div>
       </div>
     </footer>

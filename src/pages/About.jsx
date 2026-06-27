@@ -62,7 +62,7 @@ export default function About() {
   return (
     <main ref={rootRef} className="about-page">
 
-      {/* â”€â”€ Hero â”€â”€ */}
+      {/* â"€â"€ Hero â"€â"€ */}
       <section className="about-hero">
         <div className="about-hero__bg-dots" aria-hidden />
         <div className="about-hero__inner">
@@ -73,12 +73,12 @@ export default function About() {
             Al Nojoom Club, by <span className="about-hero__title-accent">Everlast Wellness</span>.
           </h1>
           <p data-reveal data-delay="120" className="about-hero__desc">
-            An exclusive membership from a holistic clinic where science serves beauty â€” caring for both adults and students with rejuvenating, professional aesthetic therapies.
+            By Everlast Wellness Medical Center — a premium aesthetic clinic delivering safe, effective, and results-driven treatments for adults and students across Abu Dhabi.
           </p>
         </div>
       </section>
 
-      {/* â”€â”€ Story â”€â”€ */}
+      {/* â"€â"€ Story â"€â"€ */}
       <section className="about-story">
         <div data-reveal="left" className="about-story__grid">
           <div className="about-story__media">
@@ -92,10 +92,10 @@ export default function About() {
             <Eyebrow>Our story</Eyebrow>
             <h2 className="about-hero__title">Where science serves beauty.</h2>
             <p className="about-story__desc">
-              Welcome to Al Nojoom Club, proudly presented by Everlast Wellness Medical Center. At Al Nojoom, we cater to both adults and students, understanding the unique skincare needs of each. Our exclusive therapies deeply cleanse, hydrate, and revitalize â€” promoting a clear, smooth, and radiant complexion that boosts your confidence.
+              Welcome to ALNOJOOM CLUB, proudly presented by Everlast Wellness Medical Center. We provide premium aesthetic treatments for adults and students, offering rejuvenating facial therapies that deeply cleanse, hydrate, and revitalize the skin.
             </p>
             <p className="about-story__desc">
-              Everlast Wellness is an aesthetic wellness clinic specializing in dermatological and anti-aging treatments. Our mission is to serve the community with the highest level of health and wellness â€” body, mind, and spirit.
+              Whether you're treating fine lines, uneven skin tone, or simply maintaining healthy skin, our treatments deliver natural-looking, long-lasting results. Everlast Wellness specializes in dermatology and anti-aging treatments with more than 10 years of expertise and the highest standards of safety and professionalism.
             </p>
             <Link to="/contact" className="about-story__cta">
               Contact us <ArrowRight />
@@ -104,7 +104,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* â”€â”€ Stats band â”€â”€ */}
+      {/* â"€â"€ Stats band â"€â"€ */}
       <section className="about-stats">
         <div data-reveal className="about-stats__grid">
           {STATS.map(s => (
@@ -116,7 +116,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* â”€â”€ Why Choose â”€â”€ */}
+      {/* â"€â"€ Why Choose â"€â"€ */}
       <section className="about-why">
         <div className="about-why__inner">
           <div data-reveal className="about-why__header">
@@ -137,7 +137,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* â”€â”€ Mobile App â”€â”€ */}
+      {/* â"€â"€ Mobile App â"€â"€ */}
       <section className="about-app">
         <div className="about-app__bg-dots" aria-hidden />
         <div data-reveal="scale" className="about-app__grid">
@@ -145,7 +145,7 @@ export default function About() {
             <span className="about-app__eyebrow">Coming soon</span>
             <h2 className="about-app__title">The Everlast Wellness app.</h2>
             <p className="about-app__desc">
-              Manage your membership, book unlimited sessions, and track your journey â€” all from your phone. Launching soon on iOS and Android.
+              Manage your membership, book unlimited sessions, and track your journey - all from your phone. Launching soon on iOS and Android.
             </p>
             <div className="about-app__stores">
               {STORE_BTNS.map(s => (
@@ -165,7 +165,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* â”€â”€ Final CTA â”€â”€ */}
+      {/* â"€â"€ Final CTA â"€â"€ */}
       <section className="about-cta">
         <div data-reveal className="about-cta__inner">
           <span className="about-cta__eyebrow">
