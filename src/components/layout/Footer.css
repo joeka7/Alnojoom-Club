@@ -1,0 +1,361 @@
+/* ══════════════════════════════════════
+   Footer
+══════════════════════════════════════ */
+
+/* ── Root ── */
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--aln-wine-deep) 0%,
+    var(--aln-wine-night) 100%
+  );
+  color: var(--aln-ivory);
+}
+
+.footer__bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 0%, #000, transparent 75%);
+  mask-image: radial-gradient(80% 70% at 50% 0%, #000, transparent 75%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Inner ── */
+.footer__inner {
+  position: relative;
+  /* Padding sits inside this box, so the cap has to allow for it — that keeps
+     the content column identical to the sections above, which pad the section
+     and cap the inner wrapper at --container-max. */
+  max-width: calc(var(--container-max) + var(--container-pad) * 2);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* ══════════════════════════════════════
+   Footer grid
+══════════════════════════════════════ */
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding: clamp(44px, 6vw, 72px) 0;
+}
+
+/* ── Brand column ── */
+.footer__logo {
+  display: block;
+  width: 124px;
+  height: auto;
+  opacity: 0.96;
+  filter: brightness(0) invert(1);
+}
+
+.footer__tagline {
+  margin: 22px 0 0;
+  max-width: 24ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.25;
+  color: rgba(247, 243, 237, 0.82);
+}
+
+/* ── Socials ── */
+.footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.footer__social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(247, 243, 237, 0.78);
+  transition: var(--t-hover);
+}
+
+.footer__social-btn:hover {
+  background: var(--aln-wine-bright);
+  border-color: var(--aln-wine-bright);
+  color: var(--accent-contrast);
+  transform: translateY(-2px);
+}
+
+/* ── Column headings ── */
+.footer__col-title {
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--aln-wine-soft);
+}
+
+/* ── Nav list ── */
+.footer__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__nav-link {
+  font-size: 15px;
+  color: rgba(247, 243, 237, 0.72);
+  text-decoration: none;
+  transition: var(--t-color);
+}
+
+.footer__nav-link:hover {
+  color: var(--aln-ivory);
+}
+
+/* ── Contact / Visit list ── */
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.footer__contact-item--center {
+  align-items: center;
+}
+
+.footer__contact-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer__contact-item--center .footer__contact-icon {
+  margin-top: 0;
+}
+
+.footer__contact-link {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(247, 243, 237, 0.72);
+  text-decoration: none;
+  transition: var(--t-color);
+}
+
+.footer__contact-link:hover {
+  color: var(--aln-ivory);
+}
+
+/* ══════════════════════════════════════
+   Bottom bar
+══════════════════════════════════════ */
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 26px 0 34px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__copyright {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(247, 243, 237, 0.5);
+}
+
+.footer__region {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 237, 0.4);
+}
+
+/* ══════════════════════════════════════
+   Responsive
+
+   Desktop (≥1025px) keeps the four-column row above untouched. Below that the
+   footer is recomposed rather than reflowed: the old rules only ever changed
+   grid-template-columns, which dropped the brand and Visit us into the same
+   column and left ~100px of dead space under Explore and Treatments while the
+   footer grew to 621px. Both breakpoints below give the brand its own band and
+   let the link groups share one row of equal columns.
+══════════════════════════════════════ */
+
+/* ── Tablet: brand band over three link columns ──
+   Named grid areas rather than column counts: the brand spans the full width
+   as its own band, then Explore / Treatments / Visit us sit beneath it as
+   three equal columns. Nothing is left with an empty half-row under it. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "brand brand brand"
+      "explore treatments visit";
+    column-gap: clamp(24px, 3.5vw, 44px);
+    row-gap: clamp(32px, 4.5vw, 46px);
+    padding: clamp(44px, 6vw, 64px) 0 clamp(38px, 5vw, 52px);
+  }
+  .footer__col--brand {
+    grid-area: brand;
+  }
+  .footer__col--explore {
+    grid-area: explore;
+  }
+  .footer__col--treatments {
+    grid-area: treatments;
+  }
+  .footer__col--visit {
+    grid-area: visit;
+  }
+
+  /* The brand band reads as one line of brand: logo and tagline on the left,
+     socials pushed to the right edge, sharing a baseline. A hairline closes
+     the band so the link columns below start cleanly. */
+  .footer__col--brand {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(20px, 3vw, 36px);
+    padding-bottom: clamp(28px, 4vw, 40px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  /* Tagline sits beside the logo instead of under it, which is what lets the
+     band stay one row deep. */
+  .footer__tagline {
+    margin: 0;
+    max-width: 22ch;
+  }
+  .footer__socials {
+    margin-top: 0;
+  }
+  /* The address is the one item that wraps to three lines in a third-width
+     column; a tighter measure keeps the three columns visually even. */
+  .footer__col--visit .footer__contact-link {
+    font-size: 14px;
+  }
+}
+
+/* ── Mobile: brand, paired link columns, contact block ──
+   Explore and Treatments pair into one two-column row — as full-width stacked
+   lists they cost eight rows on their own and pushed the footer past 1000px.
+   Contact stays full width because the address and email need the measure. */
+@media (max-width: 640px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand brand"
+      "explore treatments"
+      "visit visit";
+    column-gap: 18px;
+    row-gap: 30px;
+    padding: 44px 0 34px;
+  }
+  .footer__col--brand {
+    grid-area: brand;
+  }
+  .footer__col--explore {
+    grid-area: explore;
+  }
+  .footer__col--treatments {
+    grid-area: treatments;
+  }
+  .footer__col--visit {
+    grid-area: visit;
+  }
+
+  /* Brand keeps its stacked order here — there is no room to set the socials
+     beside the logo — but the hairline still closes the band so the paired
+     columns below read as a separate group. */
+  .footer__col--brand {
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer__logo {
+    width: 104px;
+  }
+  .footer__tagline {
+    margin-top: 16px;
+    font-size: 19px;
+  }
+  .footer__socials {
+    margin-top: 20px;
+    /* Six 38px buttons + five 9px gaps = 273px, inside a 300px content column,
+       so the row never wraps to a ragged second line. */
+    gap: 9px;
+  }
+  .footer__social-btn {
+    width: 38px;
+    height: 38px;
+  }
+  /* Tighter than the desktop 18px/13px: the two columns sit side by side, so
+     the rhythm has to stay compact without dropping below a 44px touch row. */
+  .footer__col-title {
+    margin-bottom: 14px;
+  }
+  .footer__nav-list {
+    gap: 11px;
+  }
+  .footer__nav-link {
+    font-size: 14.5px;
+    /* Treatment names are long enough to wrap in a half-width column; a
+       slightly tighter leading keeps a wrapped item from reading as two. */
+    line-height: 1.35;
+    display: inline-block;
+  }
+  /* Contact returns to full width and gets a hairline of its own, so the three
+     groups read as three bands rather than one long list. */
+  .footer__col--visit {
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer__contact-list {
+    gap: 14px;
+  }
+  .footer__contact-link {
+    font-size: 14px;
+    /* The email is a single unbroken token wider than a 320px column, so it
+       has to be allowed to break rather than force a horizontal scroll. */
+    overflow-wrap: anywhere;
+  }
+  /* Stacked and left-aligned: on a narrow screen space-between pushes the
+     region label to the far edge, which reads as misalignment against the
+     copyright above it. */
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 22px 0 28px;
+  }
+  .footer__copyright {
+    font-size: 12.5px;
+  }
+}

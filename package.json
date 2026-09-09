@@ -1,0 +1,32 @@
+{
+  "name": "alnojoom-club",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n server,vite -c green,cyan \"npm:server\" \"npm:dev:vite\"",
+    "dev:all": "concurrently -n api,web -c green,cyan --kill-others-on-fail \"npm:server\" \"npm:dev:vite\"",
+    "dev:api": "node server/index.js",
+    "dev:vite": "vite",
+    "server": "node server/index.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server/index.js",
+    "flags:sync": "python3 scripts/sync-flags.py",
+    "test:email": "node scripts/test-email.mjs"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^8.18.0",
+    "flag-icons": "^7.5.0",
+    "nodemailer": "^9.0.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.0",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^10.0.3",
+    "vite": "^6.0.0"
+  }
+}

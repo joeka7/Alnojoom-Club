@@ -1,0 +1,311 @@
+/* ══════════════════════════════════════
+   About — Hero banner
+
+   ONE unified overlay hero at every breakpoint. The photograph is always the
+   full-bleed background, the scrim always sits over it, and the copy always
+   layers on top. The section never becomes an image column beside a text
+   column — what changes across breakpoints is the ART DIRECTION, not the
+   structure.
+
+   Its own `about-banner__*` namespace: nothing here is shared with the Home
+   hero (`.hero*`) or any other block, so it can be restyled in isolation.
+
+   ── The photograph ──
+   about-us-banner.webp is 2752x1536 (16:9). The couple stands in the RIGHT
+   half, spanning ~47-95% of the width; their FACES sit high, at ~60-90% across
+   and ~24-48% down. The clean ground is the blurred travertine wall and marble
+   desk on the LEFT, 0 to ~45%.
+
+   ── The one idea behind the breakpoints ──
+   A `cover` crop of a 16:9 source into an ever-narrower box keeps less and less
+   of the source WIDTH. Past a point there is no clear width left beside the
+   couple at all — on a phone they fill the frame edge to edge.
+
+   So the copy moves around them rather than shrinking to fit:
+
+     WIDE   (>1180px)  copy sits BESIDE the couple, in the left travertine.
+                       Crop anchored right; scrim ramps left-to-right.
+     NARROW (<=1180px) copy sits BELOW them. A portrait-ish box crops
+                       horizontally, so the full image HEIGHT stays visible and
+                       the faces hold their 24-48% band; the copy takes the
+                       lower frame, which is body and floor. Crop anchored to
+                       the top; scrim ramps bottom-to-top.
+
+   Both are the same hero: one background, one scrim, one copy block on top.
+══════════════════════════════════════ */
+
+.about-banner {
+  /* Everything tunable per breakpoint, in one place.
+       --banner-pos     background-position (art direction).
+       --banner-h       section height.
+       --banner-copy    copy measure.
+       --banner-scrim   the scrim, redefined per breakpoint. */
+  --banner-pos: 86% center;
+  /* The vw term is not decoration: past ~2200px the section is wider than 16:9,
+     so `cover` starts cropping VERTICALLY, and a fixed height would slice the
+     faces' 24-48% band off. 30vw keeps enough height for them at any width. */
+  --banner-h: clamp(620px, max(84vh, 30vw), 1000px);
+  --banner-copy: 32rem;
+  --banner-scrim:
+    linear-gradient(
+      92deg,
+      rgba(247, 243, 237, 0.95) 0%,
+      rgba(247, 243, 237, 0.88) 24%,
+      rgba(247, 243, 237, 0.55) 44%,
+      rgba(247, 243, 237, 0.08) 58%,
+      rgba(247, 243, 237, 0) 66%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(247, 243, 237, 0.6) 0%,
+      rgba(247, 243, 237, 0.08) 20%,
+      rgba(247, 243, 237, 0) 38%
+    );
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: var(--banner-h);
+  padding: clamp(124px, 15vh, 172px) var(--container-pad)
+    clamp(64px, 9vh, 104px);
+  overflow: hidden;
+  background: var(--aln-stone-soft);
+}
+
+/* The photograph. A background layer rather than an <img>, so the whole
+   composition is CSS-controlled at every breakpoint; the accessible name lives
+   on role="img" + aria-label in the markup. */
+.about-banner__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--banner-src);
+  background-size: cover;
+  background-position: var(--banner-pos);
+  background-repeat: no-repeat;
+}
+
+/* Refined scrim, never a flat filter. Warm-tinted from --aln-ivory rather than
+   neutral black, so skin tones and the navy/beige clothing stay true instead of
+   going grey, and the faces are never darkened. */
+.about-banner__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--banner-scrim);
+}
+
+/* Copy always on top of both layers. */
+.about-banner__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.about-banner__copy {
+  max-width: 800px;
+}
+
+.about-banner__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--aln-wine);
+}
+
+/* The strongest element on the page: large, confident, tightly tracked. */
+.about-banner__title {
+  margin: clamp(22px, 2.4vw, 32px) 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 5.2vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.032em;
+  color: var(--aln-ink);
+  text-wrap: balance;
+}
+
+.about-banner__title-accent {
+  font-style: italic;
+  color: var(--aln-wine);
+}
+
+.about-banner__lede {
+  margin: clamp(20px, 2.2vw, 28px) 0 0;
+  max-width: 42ch;
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  line-height: 1.66;
+  color: var(--text-body);
+}
+
+/* ══════════════════════════════════════
+   Responsive art direction
+══════════════════════════════════════ */
+
+/* ── Laptop ──
+   Still copy-beside-couple, but the crop bites harder as the frame narrows, so
+   the couple's left edge moves inward and the measure tightens to match. */
+@media (max-width: 1440px) {
+  .about-banner {
+    --banner-pos: 92% center;
+    --banner-copy: 27rem;
+  }
+
+  .about-banner__title {
+    font-size: clamp(2.9rem, 4.6vw, 3.9rem);
+  }
+}
+
+/* ── Tablet ──
+   The turn. Below ~1180px a cover crop leaves under ~26rem of clear width
+   beside the couple, which cannot carry a display headline — so the copy moves
+   BELOW them instead of being squeezed. Still one hero: same background, same
+   scrim, copy still over the image. The crop anchors to the top so the faces
+   keep their high band, and the scrim now ramps from the bottom. */
+@media (max-width: 1180px) {
+  .about-banner {
+    /* 86% is forced by geometry, not taste: at these heights the crop shows
+       only ~30-60% of the source WIDTH, and the faces sit at 60-90% of it, so
+       any lower value slides them out of frame. */
+    --banner-pos: 86% top;
+    /* Solved from "the copy must fit below the faces": they end at 48% of the
+       frame, so h >= (padding-bottom + copy height) / 0.52, which across
+       561-1180px works out to ~840px. */
+    --banner-h: clamp(840px, 74vw, 900px);
+    --banner-copy: 30rem;
+    /* Bottom-up ramp: clear across the faces, dense under the type. */
+    --banner-scrim:
+      linear-gradient(
+        to top,
+        rgba(247, 243, 237, 0.97) 0%,
+        rgba(247, 243, 237, 0.93) 30%,
+        rgba(247, 243, 237, 0.62) 47%,
+        rgba(247, 243, 237, 0.12) 60%,
+        rgba(247, 243, 237, 0) 70%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(247, 243, 237, 0.5) 0%,
+        rgba(247, 243, 237, 0) 24%
+      );
+    /* Copy to the bottom of the frame, clear of the faces above. */
+    align-items: end;
+    padding-top: clamp(120px, 14vh, 150px);
+    padding-bottom: clamp(40px, 5vw, 60px);
+  }
+
+  /* Tuned for tablet rather than inherited from desktop: the type comes down a
+     step and the lede to a 2-line measure, which is what keeps the section a
+     reasonable ~840px instead of the ~1050px a desktop-sized block would need
+     to clear the faces. */
+  .about-banner__eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+  }
+
+  .about-banner__title {
+    margin-top: 22px;
+    font-size: clamp(2.5rem, 5.2vw, 3.2rem);
+    line-height: 1;
+  }
+
+  .about-banner__lede {
+    margin-top: 18px;
+    max-width: 40ch;
+    font-size: 1.08rem;
+    line-height: 1.58;
+  }
+}
+
+/* ── Small tablet / large phone ──
+   Same composition; only the measure narrows with the frame. The headline is
+   left to the tablet rule above, which is already sized for this band. */
+@media (max-width: 820px) {
+  .about-banner {
+    --banner-h: clamp(840px, 96vw, 880px);
+    --banner-copy: 28rem;
+  }
+}
+
+/* ── Phone ──
+   A portrait box crops the 16:9 source horizontally, so the FULL image height
+   stays visible and the faces hold their 24-48% band. The copy takes the lower
+   frame — body and floor, no faces — so nothing important is ever covered. */
+@media (max-width: 560px) {
+  .about-banner {
+    /* Still 86%. The narrower the frame, the less source width the crop keeps
+       (~27% at 320px), so the position has to stay hard right or the faces fall
+       outside it entirely. */
+    --banner-pos: 86% top;
+    /* Deliberate height, not a squeezed desktop. Solved so the copy clears the
+       faces: 3 headline lines + lede + CTA need ~300-340px, and the faces end
+       at 48% of the height. */
+    --banner-h: clamp(660px, 172vw, 780px);
+    --banner-copy: none;
+    --banner-scrim:
+      linear-gradient(
+        to top,
+        rgba(247, 243, 237, 0.98) 0%,
+        rgba(247, 243, 237, 0.95) 34%,
+        rgba(247, 243, 237, 0.7) 48%,
+        rgba(247, 243, 237, 0.16) 60%,
+        rgba(247, 243, 237, 0) 72%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(247, 243, 237, 0.44) 0%,
+        rgba(247, 243, 237, 0) 22%
+      );
+    padding-top: clamp(104px, 30vw, 132px);
+    padding-bottom: clamp(32px, 7.5vw, 44px);
+  }
+
+  .about-banner__eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.2em;
+  }
+
+  /* Still a real display headline -- not shrunk to fit. The measure is wide
+     enough to break in 3 lines rather than 4, which is what buys the room for
+     the copy to clear the faces. */
+  .about-banner__title {
+    margin-top: 14px;
+    font-size: clamp(2.2rem, 9.6vw, 2.8rem);
+    line-height: 1.04;
+  }
+
+  .about-banner__lede {
+    margin-top: 14px;
+    max-width: 36ch;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+}
+
+/* ── Very narrow ── */
+@media (max-width: 380px) {
+  .about-banner {
+    --banner-pos: 86% top;
+    /* 320px is the tightest case: the crop keeps only ~27% of the source width,
+       so the frame has to be tall enough for the faces' band AND the copy. */
+    --banner-h: clamp(690px, 196vw, 730px);
+  }
+
+  .about-banner__title {
+    font-size: 1.95rem;
+  }
+
+  .about-banner__lede {
+    font-size: 0.98rem;
+  }
+}
+
+/* The scrim carries the contrast, so nothing here depends on motion. Reveals
+   opt out globally in index.css. */

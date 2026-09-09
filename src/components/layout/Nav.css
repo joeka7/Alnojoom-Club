@@ -1,0 +1,398 @@
+/* ══════════════════════════════════════
+   Nav
+══════════════════════════════════════ */
+
+/* ── Root ── */
+/* --nav-pad-y and --nav-logo drive the header's height. The mobile overlay
+   is portaled to <body> and cannot inherit from .nav, so these live on :root
+   and both states read the same two values. Change them here, not in the
+   overlay -- that duplication is what made the logo jump. */
+:root {
+  --nav-pad-y: 16px;
+  --nav-logo: 80px;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  padding: var(--nav-pad-y) var(--container-pad);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    background var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    padding var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.nav--scrolled {
+  --nav-pad-y: 10px;
+  background: var(--glass-bg-strong);
+  border-bottom-color: var(--border);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Inner ── */
+.nav__inner {
+  width: 100%;
+  max-width: var(--container-max);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ── Logo ── */
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav__logo-icon {
+  width: var(--nav-logo);
+  height: var(--nav-logo);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ── Desktop links ── */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.nav__link {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--t-color);
+}
+
+.nav__link:hover,
+.nav__link--active {
+  color: var(--aln-wine);
+}
+
+.nav__link--active {
+  font-weight: 600;
+}
+
+/* ── Actions ── */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Join button ── */
+.nav__join-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--accent-contrast);
+  background: var(--aln-wine);
+  box-shadow: 0 8px 22px rgba(131, 22, 73, 0.22);
+  transition: var(--t-hover);
+}
+
+.nav__join-btn:hover {
+  background: var(--aln-wine-bright);
+  box-shadow: 0 14px 32px rgba(131, 22, 73, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ── Hamburger ── */
+.nav__hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--aln-ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+}
+
+/* ══════════════════════════════════════
+   Mobile overlay
+══════════════════════════════════════ */
+
+.nav__mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* above the nav (90); portaled to <body> to escape the nav's backdrop-filter */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--nav-pad-y) var(--container-pad) 40px;
+  overflow-y: auto;
+  background: var(--aln-ivory);
+  animation: aln-fade 0.28s var(--ease-out) both;
+}
+
+.nav__mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--nav-logo);
+}
+
+.nav__mobile-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav__mobile-logo-icon {
+  width: var(--nav-logo);
+  height: var(--nav-logo);
+  object-fit: contain;
+}
+
+.nav__mobile-logo-name {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--aln-ink);
+}
+
+.nav__mobile-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--aln-wine);
+}
+
+.nav__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--aln-ink);
+  cursor: pointer;
+}
+
+/* ── Mobile nav links ── */
+.nav__mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 48px;
+}
+
+.nav__mobile-link {
+  padding: 6px 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 11vw, 3.4rem);
+  line-height: 1.18;
+  color: var(--aln-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-faint);
+  transition: var(--t-color);
+}
+
+.nav__mobile-link:hover,
+.nav__mobile-link--active {
+  color: var(--aln-wine);
+}
+
+/* ── Mobile footer ── */
+.nav__mobile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 34px;
+}
+
+.nav__mobile-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 58px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  text-decoration: none;
+  background: var(--aln-wine);
+  box-shadow: 0 12px 30px rgba(131, 22, 73, 0.28);
+}
+
+/* ══════════════════════════════════════
+   Services submenu
+══════════════════════════════════════ */
+
+/* Vertical padding (cancelled by the negative margin) keeps the pointer inside
+   the trigger while it travels down to the panel. */
+.nav__dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 0;
+  margin: -12px 0;
+}
+
+.nav__submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 1;
+  min-width: 186px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    visibility var(--dur-fast) var(--ease-out);
+}
+
+/* Opens on hover, and on keyboard focus anywhere inside.
+
+   :has(:focus-visible) and not :focus-within: clicking the trigger or a
+   sub-link leaves that element focused, so :focus-within stayed true and the
+   panel latched open even after the pointer left. :focus-visible matches
+   keyboard focus only, so Tab still opens the panel while a click does not
+   hold it open. */
+.nav__dropdown:hover .nav__submenu,
+.nav__dropdown:has(:focus-visible) .nav__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.nav__submenu-link {
+  padding: 9px 14px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--t-color);
+}
+
+.nav__submenu-link:hover,
+.nav__submenu-link:focus-visible,
+.nav__submenu-link--active {
+  color: var(--aln-wine);
+  background: var(--aln-rose);
+}
+
+.nav__submenu-link--active {
+  font-weight: 600;
+}
+
+/* ── Mobile sub-links ── */
+.nav__mobile-sublink {
+  padding: 6px 0 6px 24px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 6vw, 1.9rem);
+  line-height: 1.2;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-faint);
+  transition: var(--t-color);
+}
+
+.nav__mobile-sublink:hover,
+.nav__mobile-sublink--active {
+  color: var(--aln-wine);
+}
+
+/* ── Dropdown chevron ── */
+.nav__link--has-submenu {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__link-chevron {
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+/* Flip the chevron and light up the label whenever the panel is open.
+   :has(:focus-visible) rather than :focus-within -- see the note on the panel
+   above: a click must not latch these on. */
+.nav__dropdown:hover .nav__link,
+.nav__dropdown:has(:focus-visible) .nav__link {
+  color: var(--aln-wine);
+}
+
+.nav__dropdown:hover .nav__link-chevron,
+.nav__dropdown:has(:focus-visible) .nav__link-chevron {
+  transform: rotate(180deg);
+}
+
+/* ══════════════════════════════════════
+   Responsive
+══════════════════════════════════════ */
+
+/* Matches the 940px JS breakpoint in Nav.jsx that swaps the desktop links
+   for the hamburger — the logo shrinks with it. */
+/* One step down from the 80px desktop mark, held steady from tablet through
+   phone — the header is padding-driven, so this sets its height too. */
+@media (max-width: 940px) {
+  :root {
+    --nav-logo: 60px;
+  }
+
+  /* The overlay is portaled outside .nav, so it cannot see .nav--scrolled.
+     Holding the mobile header padding constant is what lets both states share
+     one value -- condense-on-scroll stays a desktop behaviour. */
+  .nav--scrolled {
+    --nav-pad-y: 16px;
+  }
+}

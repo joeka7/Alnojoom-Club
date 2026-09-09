@@ -1,0 +1,790 @@
+/* ══════════════════════════════════════
+   Contact page
+══════════════════════════════════════ */
+
+.contact-page {
+  position: relative;
+  overflow-x: clip;
+  background: var(--bg-base);
+}
+
+/* ══════════════════════════════════════
+   Hero
+══════════════════════════════════════ */
+
+.contact-hero {
+  position: relative;
+  padding: clamp(124px, 16vh, 180px) var(--container-pad) clamp(40px, 5vw, 56px);
+  text-align: center;
+}
+
+.contact-hero__bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: var(--dot-grid);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(56% 60% at 50% 6%, #000, transparent 72%);
+  mask-image: radial-gradient(56% 60% at 50% 6%, #000, transparent 72%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.contact-hero__inner {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--aln-wine);
+}
+
+.contact-hero__title {
+  margin: 22px 0 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 6.4vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--aln-ink);
+}
+
+.contact-hero__title-accent {
+  font-style: italic;
+  color: var(--aln-wine);
+}
+
+.contact-hero__desc {
+  margin: 24px 0 0;
+  max-width: 50ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════
+   Main section
+══════════════════════════════════════ */
+
+.contact-main {
+  padding: clamp(48px, 7vw, 96px) var(--container-pad);
+}
+
+.contact-main__grid {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: start;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+/* ══════════════════════════════════════
+   Form card
+══════════════════════════════════════ */
+
+.contact-form-card {
+  padding: clamp(28px, 4vw, 48px);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-form-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-d3, 26px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--aln-ink);
+}
+
+.contact-form-card__desc {
+  margin: 8px 0 30px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ── Form ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.contact-form__label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-form__required {
+  margin-left: 2px;
+  color: var(--aln-wine);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--aln-ink);
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.contact-form__input {
+  height: 48px;
+}
+
+.contact-form__textarea {
+  padding: 13px 16px;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+  border-color: var(--aln-wine);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+/* ── Phone field: country picker + number input ── */
+.contact-form__phone {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-form__phone .contact-form__input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ── Country picker ── */
+.country-picker {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.country-picker__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: border-color 0.2s;
+}
+
+.country-picker__trigger:hover {
+  border-color: var(--border-strong);
+}
+
+.country-picker__trigger:focus-visible,
+.country-picker__trigger--open {
+  outline: none;
+  border-color: var(--aln-wine);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* One <img> per row, served from /flags. The flag-icons *stylesheet* is
+   deliberately not imported: Vite inlines its ~400 SVGs as data URIs, which
+   turned the site-wide CSS bundle from 83K into 496K to show a single 21px
+   flag. The SVGs themselves still come from that package -- see
+   `npm run flags:sync`. 4x3 is the aspect they are drawn at. */
+.country-picker__flag {
+  flex: 0 0 auto;
+  width: 21px;
+  height: 15.75px;
+  object-fit: cover;
+  border-radius: 2px;
+  /* Keeps pale flags (JP, PL) from dissolving into the background. */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.country-picker__dial {
+  font-size: 15px;
+  color: var(--aln-ink);
+}
+
+.country-picker__chevron {
+  color: var(--text-subtle);
+  transition: transform 0.2s;
+}
+
+.country-picker__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown ── */
+.country-picker__menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 302px;
+  max-width: 78vw;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.country-picker__search {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.country-picker__search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--aln-ink);
+}
+
+.country-picker__search-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.country-picker__list {
+  max-height: 244px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  overflow-y: auto;
+  /* Momentum scrolling inside the menu on iOS, and no scroll chaining to the
+     page once the list hits its end. */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.country-picker__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm, 8px);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--aln-ink);
+}
+
+.country-picker__option--active {
+  background: var(--aln-stone-soft);
+}
+
+.country-picker__option--selected {
+  color: var(--aln-wine);
+  font-weight: 600;
+}
+
+.country-picker__name {
+  flex: 1 1 auto;
+  /* Long names (Saint Vincent and the Grenadines) truncate rather than
+     wrapping the row to two lines. */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.country-picker__option-dial {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.country-picker__empty {
+  margin: 0;
+  padding: 18px 14px;
+  font-size: 13.5px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+
+.contact-form__submit {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-contrast);
+  cursor: pointer;
+  background: var(--aln-wine);
+  transition: var(--t-hover);
+}
+
+.contact-form__submit:hover:not(:disabled) {
+  background: var(--aln-wine-bright);
+  box-shadow: 0 20px 46px rgba(131, 22, 73, 0.34);
+  transform: translateY(-3px);
+}
+
+/* Honeypot: off-screen rather than display:none, which some bots skip. Kept
+   out of the tab order and the accessibility tree by the markup itself. */
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Turnstile sizes its own iframe; this just gives it breathing room and lets
+   it centre on narrow screens where the widget is wider than the column. */
+.contact-form__turnstile {
+  margin-top: 4px;
+  min-height: 65px;
+}
+
+.contact-form__error {
+  margin: 0;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--aln-wine);
+  background: rgba(131, 22, 73, 0.07);
+  border: 1px solid rgba(131, 22, 73, 0.18);
+}
+
+/* Same treatment as the loading state: the button is live only once the
+   visitor has passed verification. */
+.contact-form__submit:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+}
+
+.contact-form__submit:disabled:hover {
+  background: var(--border);
+  box-shadow: none;
+  transform: none;
+}
+
+.contact-form__submit--loading {
+  background: var(--border);
+  cursor: not-allowed;
+}
+
+.contact-form__submit--loading:hover {
+  background: var(--border);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── Success state ── */
+.contact-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.contact-form__success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--aln-rose);
+  color: var(--aln-wine);
+}
+
+.contact-form__success-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--aln-ink);
+}
+
+.contact-form__success-desc {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.contact-form__success-reset {
+  margin-top: 12px;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-body);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* ══════════════════════════════════════
+   Sidebar
+══════════════════════════════════════ */
+
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Info card ── */
+.contact-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: var(--t-hover);
+}
+
+.contact-info-card:hover {
+  border-color: var(--aln-wine);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.contact-info-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--aln-rose);
+  color: var(--aln-wine);
+}
+
+.contact-info-card__label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.contact-info-card__value {
+  margin-top: 4px;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--aln-ink);
+  word-break: break-word;
+}
+
+/* ── Hours card ── */
+.contact-hours {
+  padding: 24px 26px;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-hours__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.contact-hours__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--aln-rose);
+  color: var(--aln-wine);
+}
+
+.contact-hours__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.contact-hours__title {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--aln-ink);
+}
+
+.contact-hours__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.contact-hours__day {
+  font-size: 14px;
+  color: var(--text-body);
+}
+
+.contact-hours__time {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  color: var(--aln-wine);
+}
+
+/* ── Map card ── */
+.contact-map {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--aln-stone-soft);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+/* Fills the card; the parent's overflow:hidden clips it to the radius. */
+.contact-map__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.contact-map__link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 18px;
+  text-decoration: none;
+}
+
+/* Scrim under the button so it stays legible over whatever the photo does at
+   the bottom edge. Sits behind the button, which is the link's own child. */
+.contact-map__link::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.42), transparent);
+  pointer-events: none;
+}
+
+.contact-map__btn {
+  position: relative;
+}
+
+.contact-map__btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  background: var(--aln-wine);
+}
+
+/* ══════════════════════════════════════
+   CTA Strip
+══════════════════════════════════════ */
+
+.contact-cta {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  /* Row gap is larger than column gap: when the action wraps below the copy on
+     narrow screens it needs real separation, but side by side it should sit
+     close to the text it belongs to. */
+  gap: 36px clamp(28px, 4vw, 56px);
+  /* Same content column as every section: capped at --container-max, with the
+     --container-pad gutter kept on narrower screens. */
+  width: min(var(--container-max), 100% - var(--container-pad) * 2);
+  margin: 70px auto clamp(40px, 6vw, 72px);
+  padding: clamp(48px, 6vw, 80px) clamp(28px, 5vw, 72px);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(130deg, var(--aln-wine-deep), var(--aln-wine-night));
+  color: var(--aln-ivory);
+}
+
+.contact-cta__bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.contact-cta__copy {
+  position: relative;
+  /* flex-basis, not a hard max-width: the copy takes the space it needs and
+     the action column keeps the rest, instead of both leaving a gap in the
+     middle. */
+  flex: 1 1 30ch;
+  max-width: 58ch;
+}
+
+.contact-cta__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--aln-wine-soft);
+}
+
+.contact-cta__title {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--aln-ivory);
+}
+
+.contact-cta__desc {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(247, 243, 237, 0.78);
+}
+
+.contact-cta__actions {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Solid ivory on the wine panel: this is the only action here, so it carries
+   full primary weight rather than the translucent outline it wore while
+   competing with the WhatsApp button. */
+.contact-cta__join-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--aln-wine-deep);
+  text-decoration: none;
+  background: var(--aln-ivory);
+  border: 1px solid var(--aln-ivory);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transition: var(--t-hover);
+}
+
+.contact-cta__join-btn:hover {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+  transform: translateY(-3px);
+}
+
+/* ══════════════════════════════════════
+   Responsive
+══════════════════════════════════════ */
+
+@media (max-width: 860px) {
+  .contact-main__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ══════════════════════════════════════
+   Section rhythm
+   Contact has a single full-width section below its hero, so it takes the
+   first step of the alternation. (.contact-cta is a card inside it, not a
+   section, and keeps its own treatment.)
+══════════════════════════════════════ */
+
+.contact-main {
+  background: var(--section-bg-a);
+}

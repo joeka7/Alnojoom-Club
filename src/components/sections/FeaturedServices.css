@@ -1,0 +1,281 @@
+/* ══════════════════════════════════════
+   Featured Services
+
+   The HOME page's copy of the treatment-tracks section. The About page has its
+   own namespace in AboutServices.css — nothing here is shared with it, so these
+   rules can change without touching About.
+
+   Markup comes from components/FeaturedServices.jsx, which builds its class
+   names from prefixes; these are its defaults.
+
+   Moved out of Home.css when the section became reusable; the responsive
+   overrides that lived in Home.css's own media blocks travel with it, so the
+   section styles itself wherever it is rendered.
+══════════════════════════════════════ */
+
+.services {
+  padding: clamp(72px, 10vw, 140px) var(--container-pad);
+}
+
+.services__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.services__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.services__header-copy {
+  flex: 1 1 420px;
+  max-width: 60ch;
+}
+
+.services__title {
+  margin: 18px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-d1);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--aln-ink);
+  max-width: 16ch;
+}
+
+.services__title-accent {
+  font-style: italic;
+  color: var(--aln-wine);
+}
+
+/* Sits opposite the headline and carries the statement that used to be a
+   dead "explore our services" link — the two panels below are the section's
+   only navigation. */
+.services__lede {
+  flex: 0 1 40ch;
+  margin: 0 0 6px;
+  font-size: 15.5px;
+  line-height: 1.68;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════
+   Treatment tracks
+   Two pathways read as one spread rather than two cards: a hairline rules
+   across the top of the pair and a second one divides them, so the panels
+   share a frame instead of each sitting in its own. The two are equal in
+   every dimension — column width, crop, type scale — because they are two
+   tracks, not a primary and a secondary.
+══════════════════════════════════════ */
+
+/* The gap between the two panels, the rule inside it and the offset below the
+   top hairline all belong to the grid, never to the panels: anything padded
+   onto a .track-panel is padding inside an <a>, which is dead space the
+   cursor still reports as clickable. The rule is painted as a 1px background
+   gradient centred in the column gap — a border on either panel would put the
+   line on a link box rather than between the columns, and would travel with
+   whichever panel owned it. */
+.tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(52px, 8vw, 128px);
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: clamp(28px, 3.4vw, 46px);
+  border-top: 1px solid var(--border);
+  background-image: linear-gradient(var(--border), var(--border));
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: 1px 100%;
+}
+
+/* Content box only — no padding, so the hit area stops where the panel's own
+   copy and portrait stop. */
+.track-panel {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.track-panel__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--aln-stone-soft);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--dur-slow) var(--ease-out);
+}
+
+/* Both sources are square and both windows are square, so neither portrait is
+   cropped harder than the other. --img-fill is the resting zoom: the hover
+   multiplies it rather than replacing it, so a scaled portrait still gets the
+   same 4.5% push as an unscaled one. */
+.track-panel__image {
+  --img-fill: 1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 30%;
+  transform: scale(var(--img-fill));
+  /* Slow and shallow on purpose: a face is the most motion-sensitive thing on
+     the page, and anything faster than about a second reads as a twitch. */
+  transition: transform 1100ms var(--ease-out);
+}
+
+/* The men's shot is a cut-out with wide transparent margins — at 1:1 his head
+   covers about 60% of the frame and floats on the backdrop while hers fills
+   it. The zoom is what equalises the two, not a different window. */
+.track-panel--men .track-panel__image {
+  --img-fill: 1.34;
+  object-position: 50% 42%;
+}
+
+.track-panel__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: clamp(22px, 2.6vw, 34px);
+}
+
+.track-panel__title {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--aln-ink);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.track-panel__title-accent {
+  font-style: italic;
+  color: var(--aln-wine);
+}
+
+.track-panel__desc {
+  margin: 16px 0 0;
+  max-width: 44ch;
+  font-size: 15px;
+  line-height: 1.66;
+  color: var(--text-muted);
+}
+
+.track-panel__cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 9px;
+  /* The two copy blocks start at different heights because the images do;
+     margin-top: auto puts both CTAs back on one baseline at the row's foot.
+     Grid stretches the shorter panel to the taller one, so this holds. */
+  margin-top: auto;
+  padding-top: clamp(24px, 2.8vw, 36px);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--aln-wine);
+  transition: gap var(--dur-base) var(--ease-out);
+}
+
+.track-panel__cta-label {
+  position: relative;
+}
+
+.track-panel__cta-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* ── Hover / keyboard focus ──
+   Two things move and nothing recolours. No tint over the portrait: this is a
+   skin-quality section, and a wine film over a face ruins the only thing the
+   photograph is there to show. No colour change on the headline either — the
+   accent word is already wine, so turning the rest of it wine flattens the
+   two-tone into one block.
+
+   What is left is the CTA answering (the arrow slides out, the label
+   underlines) and the portrait easing in a fraction. Understatement is the
+   point; the whole panel is already the link, so the hover only has to
+   confirm that, not announce it. */
+.track-panel:hover .track-panel__media,
+.track-panel:focus-visible .track-panel__media {
+  box-shadow: var(--shadow-md);
+}
+
+.track-panel:hover .track-panel__image,
+.track-panel:focus-visible .track-panel__image {
+  transform: scale(calc(var(--img-fill) * 1.025));
+}
+
+.track-panel:hover .track-panel__cta,
+.track-panel:focus-visible .track-panel__cta {
+  gap: 15px;
+}
+
+.track-panel:hover .track-panel__cta-label::after,
+.track-panel:focus-visible .track-panel__cta-label::after {
+  transform: scaleX(1);
+}
+
+/* ── The two pathways stack ──
+   Two columns hold down to here; below it the copy column gets too narrow for
+   the display headline. Stacked, the portraits are capped rather than run to
+   the full content width — at 700px an uncapped 4/5 portrait is 790px tall on
+   its own, which is what makes a two-panel section feel endless. */
+@media (max-width: 700px) {
+  /* The background rule is dropped here. Stacked, its 50% position measured
+     against the whole .tracks box rather than against the row gap, so the line
+     landed on the first panel's CTA underline — a grey 1px rule a few pixels
+     off a wine one. In its place ::after becomes a real grid item sized to sit
+     in the gap between the two rows, which cannot drift because it is placed
+     by the grid rather than positioned by percentage.
+
+     The gap also opens from 34px to clamp(56px, 11vw, 76px): a rule needs air
+     line. */
+  /* No rules at phone width: one panel per row already reads as two separate
+     pathways, so the hairline above the pair and the one between them were
+     only adding clutter next to the portraits. Both the top border and the
+     column-gap gradient are cleared here, and the padding that held the pair
+     off the top hairline goes with it. */
+  .tracks {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: clamp(56px, 11vw, 76px);
+    padding-top: 0;
+    border-top: none;
+    background-image: none;
+  }
+  /* Both windows are square, so one cap covers both and they stay the same
+     size stacked as they are side by side. */
+  .track-panel__media {
+    max-width: 440px;
+  }
+}
+
+/* ── Phones only: the track type comes down a step ──
+   Separate from the hero block above, which now reaches 1024px. These sizes
+   are tuned for a ~350px content column and would look undersized on a
+   tablet, so they stay pinned to 560px. */
+@media (max-width: 560px) {
+  .track-panel__title {
+    font-size: clamp(1.9rem, 8vw, 2.4rem);
+  }
+  .track-panel__desc {
+    font-size: 14.5px;
+  }
+  .track-panel__cta {
+    padding-top: 22px;
+    font-size: 14.5px;
+  }
+}
