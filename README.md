@@ -4,12 +4,14 @@ Marketing website for **Al Nojoom Club**, the aesthetic membership programme of 
 
 It is a React single-page application served by a small, dependency-light Node HTTP server. The server exists for exactly two reasons: it exposes cached membership pricing, and it processes contact-form submissions (validation, bot verification, and mail delivery). No SMTP credential or secret key is ever reachable from the browser bundle.
 
+**Production:** <https://alnojoomclub.com/>
+
 ## Status
 
 | Item | Value |
 |---|---|
 | Repository | [joeka7/Alnojoom-Club](https://github.com/joeka7/Alnojoom-Club) |
-| Public URL | Not specified in the repository. The enquiry email footer references `alnojoomclub.com` |
+| Production URL | <https://alnojoomclub.com/> |
 | Frontend | React 18.3.1 · React Router 7.18.0 · Vite 6.4.3 |
 | Backend | Node built-in `node:http` — no web framework |
 | Language | JavaScript (ESM). No TypeScript |
